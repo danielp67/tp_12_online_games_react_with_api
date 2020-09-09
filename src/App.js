@@ -1,71 +1,65 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import Table from './Table';
-import Form from './Form';
-import Filter from './Filter';
-import GamesTable from './GamesTable';
-import GamesCard from './GamesCard';
-import FilterableProductTable from './Store';
-import PRODUCTS from './store.json';
-import GamesList from './gameslist.json';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
+import Home from './Home';
+import Topics from './Topics';
 
 
+export default function App() {
 
 
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/topics">Topics</Link>
+          </li>
+        </ul>
 
-class App extends Component {
-
-  state = {
-    characters: [],
-  }
-
-  removeCharacter = (index) => {
-    const {characters} = this.state
-  
-    this.setState({
-      characters: characters.filter((character, i) => {
-        return i !== index
-      }),
-    })
-  }
-
-  getComments = (index) => {
-    const {characters} = this.state
-  
-    this.setState({
-      characters: characters.filter((character, i) => {
-        return i !== index
-      }),
-    })
-  }
-
-
-  render() {
-    const { characters } = this.state
-  
-    return (
-      <div className="container">
-        <Filter handleSubmit={this.handleSubmit} />
-         <FilterableProductTable products={PRODUCTS} />
-        <Table characterData={characters} removeCharacter={this.removeCharacter} />
-        <Form handleSubmit={this.handleSubmit} />
-        <GamesTable gamesData={GamesList} getComments={this.getComments} />
-        <Form handleSubmit={this.handleSubmit} />
-
-        <GamesCard gamesData={GamesList} getComments={this.getComments} />
-
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/topics/:topicId">
+            <TopicId gameId={TopicId} />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    )
-  }
-
-
-  handleSubmit = (character) => {
-    this.setState({characters: [...this.state.characters, character]})
-  }
-
-
-
+    </Router>
+  );
 }
 
 
-export default App;
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function TopicId() {
+  let { topicId } = useParams();
+  return (
+          <div>
+          {topicId}
+           
+          </div>
+          
+          
+    );
+}
