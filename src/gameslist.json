@@ -1,0 +1,14 @@
+
+ [
+  {"index" :1,"img" : "img/1.jpg", "name" : "Minecraft (franchise)", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2009", "plateformes" : "Microsoft Windows, OS X, Linux, Xbox 360, Xbox One,PlayStation 4, PlayStation Vita, Android, iOS, Windows Phone, Kindle Fire, Nintendo Switch, Apple TV", "copiesSold" : "201 millions", "rate" :5},
+{"index" :2,"img" : "img/2.jpg", "name" : "Tetris (franchise)", "studio" : "RAS", "category" : "RAS", "releaseDate" : "1984", "plateformes" : "Omniplateforme", "copiesSold" : "170 millions", "rate" :5},
+{"index" :3,"img" : "img/3.jpg", "name" : "Grand Theft Auto V", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2013", "plateformes" : "PlayStation 3, Xbox 360, PlayStation 4, Xbox One, Microsoft Windows", "copiesSold" : "135 millions", "rate" :5},
+{"index" :4,"img" : "img/4.jpg", "name" : "Wii Sports", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2006", "plateformes" : "Wii", "copiesSold" : "82,90 millions", "rate" :5},
+{"index" :5,"img" : "img/5.jpg", "name" : "PlayerUnknown's Battlegrounds", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2017", "plateformes" : "Microsoft Windows, Xbox One, PlayStation 4", "copiesSold" : "65 millions", "rate" :5},
+{"index" :6,"img" : "img/6.jpg", "name" : "Super Mario Bros.", "studio" : "RAS", "category" : "RAS", "releaseDate" : "1985", "plateformes" : "Nintendo Entertainment System", "copiesSold" : "40,24 millions", "rate" :5},
+{"index" :7,"img" : "img/7.jpg", "name" : "Mario Kart Wii", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2008", "plateformes" : "Wii", "copiesSold" : "37,32 millions", "rate" :5},
+{"index" :8,"img" : "img/8.jpg", "name" : "Mario Kart 8/Deluxe", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2014", "plateformes" : "Wii U, Nintendo Switch", "copiesSold" : "35,19 millions", "rate" :5},
+{"index" :9,"img" : "img/9.jpg", "name" : "Wii Sports Resort", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2009", "plateformes" : "Wii", "copiesSold" : "33,13 millions", "rate" :5},
+{"index" :10,"img" : "img/10.jpg", "name" : "Red Dead Redemption II", "studio" : "RAS", "category" : "RAS", "releaseDate" : "2018", "plateformes" : "PlayStation 4, Xbox One, Microsoft Windows", "copiesSold" : "32 millions", "rate" :5}
+
+    ]

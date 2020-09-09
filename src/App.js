@@ -1,26 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Table from './Table';
+import Form from './Form';
+import Filter from './Filter';
+import GamesTable from './GamesTable';
+import GamesCard from './GamesCard';
+import FilterableProductTable from './Store';
+import PRODUCTS from './store.json';
+import GamesList from './gameslist.json';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+
+class App extends Component {
+
+  state = {
+    characters: [],
+  }
+
+  removeCharacter = (index) => {
+    const {characters} = this.state
+  
+    this.setState({
+      characters: characters.filter((character, i) => {
+        return i !== index
+      }),
+    })
+  }
+
+  getComments = (index) => {
+    const {characters} = this.state
+  
+    this.setState({
+      characters: characters.filter((character, i) => {
+        return i !== index
+      }),
+    })
+  }
+
+
+  render() {
+    const { characters } = this.state
+  
+    return (
+      <div className="container">
+        <Filter handleSubmit={this.handleSubmit} />
+         <FilterableProductTable products={PRODUCTS} />
+        <Table characterData={characters} removeCharacter={this.removeCharacter} />
+        <Form handleSubmit={this.handleSubmit} />
+        <GamesTable gamesData={GamesList} getComments={this.getComments} />
+        <Form handleSubmit={this.handleSubmit} />
+
+        <GamesCard gamesData={GamesList} getComments={this.getComments} />
+
+      </div>
+    )
+  }
+
+
+  handleSubmit = (character) => {
+    this.setState({characters: [...this.state.characters, character]})
+  }
+
+
+
 }
+
 
 export default App;
