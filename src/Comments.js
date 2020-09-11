@@ -1,53 +1,57 @@
-import React, {Component} from 'react'
+import React from 'react';
 
-
-class Comments extends Component {
-  initialState = {
-    Author: '',
-    Comment: '',
+const CommentsHeader = () => {
+    return (
+     <h3  className="text-center my-3">
+       Vos Commentaires
+     </h3> 
+    )
   }
 
-  state = this.initialState
 
-  handleChange = (event) => {
-    const {name, value} = event.target
-  
-    this.setState({
-      [name]: value,
+  const CommentsList = (props) => {
+    const rows = props.characterData.map((row, index) => {
+      return (
+        <div key={index}  className="card my-2 mx-2">
+              
+               <div className="card-header">
+                  <div className="row">
+                      <div className="col-9">
+                      De : {row.author} <br/>
+                      le : {row.date}
+                      </div>
+
+                      <div className="col-3 text-right">
+                      Note : {row.rate}/5
+                      </div>
+                  </div>
+               </div>
+               <div className="card-body">
+            <p className="card-text text-center">
+                {row.comment}<br/>
+            </p>
+          </div>
+          <button className="card-footer" onClick={() => props.removeCharacter(index)}>Delete</button>
+        </div>
+      )
     })
-  }
-
-  submitForm = () => {
-    this.props.handleSubmit(this.state)
-    this.setState(this.initialState)
+  
+    return <div className="col-12">{rows}</div>
   }
 
 
-  render() {
-    const { author, comment } = this.state;
+
+  const Comments = (props) => {
+    const {characterData, removeCharacter} = props
   
     return (
-      <form>
-        <label htmlFor="author">Author</label>
-        <input
-          type="text"
-          name="author"
-          id="author"
-          value={author}
-          onChange={this.handleChange} />
-        <label htmlFor="job">Comment</label>
-        <input
-          type="text"
-          name="comment"
-          id="comment"
-          value={comment}
-          onChange={this.handleChange} />
-          <input type="button" value="Submit" onClick={this.submitForm} />
-      </form>
-    );
+      <div >
+        <CommentsHeader />
+        <CommentsList characterData={characterData} removeCharacter={removeCharacter} />
+      </div>
+    )
   }
 
 
-}
 
-export default Comments;
+export default Comments
