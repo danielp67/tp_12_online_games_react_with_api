@@ -7,14 +7,52 @@ class Store{
       GamesList : GamesList,
       gameId : '',
       characters: [],
+      permittedValues : [],
+      searchGame :[]
     }
     this.componentDidMount()
+    this.filterByName()
+   
+    
+   console.log(this.state)
   }
 
   
   saveStateToLocalStorage = () => {
     localStorage.setItem('stateComment', JSON.stringify(this.state))
   }
+
+  filterByName(){
+    for (let i = 0; i < this.state.GamesList.length; i++){
+      this.state.permittedValues[i] = this.state.GamesList[i]["name"];
+   }
+    }
+
+
+    setName(value){
+     
+        this.state.searchGame = value;
+    }
+
+    filterName(){
+      let filterName=[]
+      this.state.GamesList = GamesList
+      console.log(this.state.searchGame)
+      if(this.state.searchGame){
+        for (let i = 0; i < this.state.GamesList.length; i++){
+          if(this.state.GamesList[i]["name"] == this.state.searchGame){
+
+            filterName.push(this.state.GamesList[i])
+          }
+         
+        }
+      console.log(filterName)
+      this.state.GamesList = filterName
+    }
+        return this.state.GamesList
+      }
+
+
 
   componentDidMount(){
     console.log(this.state)
