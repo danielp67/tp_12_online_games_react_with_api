@@ -10,7 +10,8 @@ class Home extends Component {
   super(props);
   this.state = {
     GamesList : storage.getState().GamesList,
-    gameId : storage.getState().gameId
+    gameId : storage.getState().gameId,
+    permittedValues : storage.getState().permittedValues
   }
  }
 
@@ -29,7 +30,7 @@ class Home extends Component {
        
         <Filter gamesData={this.state.GamesList} newSetState={this.newSetState}/>
         
-          <Autocomplete gamesData={this.state.GamesList} newSetState={this.newSetState} searchName ={this.searchName} />
+          <Autocomplete suggestions={this.state.permittedValues}  searchName ={this.searchName} />
           
 
         <GamesCard gamesData={this.state.GamesList} />

@@ -10,7 +10,7 @@ class Autocomplete extends Component {
 
   static defaultProps = {
     
-    suggestions:storage.getState().permittedValues
+    suggestions: []
   };
 
   constructor(props) {
@@ -182,9 +182,7 @@ class Autocomplete extends Component {
         <button className="btn btn-outline-success my-2 my-sm-0" type="button" onClick={filterName}>Search</button>
         </div>
 
-        <div className="col-2">
-          <button  className="btn btn-info my-2 my-sm-0" type="button" onClick={this.filterByIndexAsc} >Trier par Défaut</button>
-          </div> 
+        
       </Fragment>
       </div>
     );
@@ -192,14 +190,6 @@ class Autocomplete extends Component {
 
   }
 
-  filterByIndexAsc = () =>{
-    const byIndex = (a,b) => a.rank - b.rank
-
-    let mapped = [...this.props.gamesData];
-    mapped = mapped.sort(byIndex);
-
-    this.props.newSetState(mapped);
-  }
   
 }
 
