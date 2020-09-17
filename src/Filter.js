@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import ComboBox from './Autocomplete';
-import Autocomplete from './Autocomplete';
 
 
 
@@ -10,6 +8,7 @@ class Filter extends Component {
       this.state = {
         gamesData : this.props.gamesData
     }
+    console.log("filter constructor",this.props)
 }
 
   filterByIndexDesc = () =>{

@@ -1,19 +1,20 @@
 import GamesList from './gameslist.json';
+import axios from 'axios';
 
 
 class Store{
   constructor(){
+    
     this.state = {
-      GamesList : GamesList,
+      GamesList : [],
       gameId : '',
       characters: [],
       permittedValues : [],
       searchGame :[]
     }
-    this.componentDidMount()
+    this.componentDidMount();
     this.filterByName()
    
-    
    console.log(this.state)
   }
 
@@ -29,14 +30,20 @@ class Store{
     }
 
 
-    setName(value){
-     
-        this.state.searchGame = value;
-    }
+  setName(value){
+    this.state.searchGame = value;
+  }
 
-    filterName(){
+  setGameList(value){
+    this.state.GameList = value;
+  }
+
+
+
+   filterName(){
       let filterName=[]
-      this.state.GamesList = GamesList
+     //pas nécessaire
+     // this.state.GamesList = GamesList;
       console.log(this.state.searchGame)
       if(this.state.searchGame){
         for (let i = 0; i < this.state.GamesList.length; i++){
@@ -54,24 +61,34 @@ class Store{
 
 
 
-  componentDidMount(){
-    console.log(this.state)
+componentDidMount(){
+
+  console.log(this.state)
+ // this.state.GamesList = await this.getGameList();
+
     const state = localStorage.getItem('stateComment')
     if (state) {
       this.state.characters = JSON.parse(state)
     }
-
     console.log(this.state)
   }
+/*
+  getGameList(){
+  const response = fetch(`https://127.0.0.1:8000/rep`).then(res => res.json());
+      console.log(response)
+       return response;
+    }
+
+    */
+
+
 
  getState = () =>{
   return this.state
 }
 
 
- setCurrentGame = (game) =>{
-      this.CurrentGame = game
- }
+
 }
 
 let storage = new Store()
