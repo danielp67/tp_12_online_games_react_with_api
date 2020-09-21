@@ -1,6 +1,4 @@
 import GamesList from './gameslist.json';
-import axios from 'axios';
-
 
 class Store{
   constructor(){
@@ -13,7 +11,7 @@ class Store{
       searchGame :[]
     }
     this.componentDidMount();
-    this.filterByName()
+ //   this.filterByName()
    
    console.log(this.state)
   }
@@ -23,12 +21,13 @@ class Store{
     localStorage.setItem('stateComment', JSON.stringify(this.state))
   }
 
+  /*
   filterByName(){
     for (let i = 0; i < this.state.GamesList.length; i++){
       this.state.permittedValues[i] = this.state.GamesList[i]["name"];
    }
     }
-
+*/
 
   setName(value){
     this.state.searchGame = value;
@@ -64,7 +63,7 @@ class Store{
 componentDidMount(){
 
   console.log(this.state)
- // this.state.GamesList = await this.getGameList();
+
 
     const state = localStorage.getItem('stateComment')
     if (state) {
@@ -72,15 +71,6 @@ componentDidMount(){
     }
     console.log(this.state)
   }
-/*
-  getGameList(){
-  const response = fetch(`https://127.0.0.1:8000/rep`).then(res => res.json());
-      console.log(response)
-       return response;
-    }
-
-    */
-
 
 
  getState = () =>{

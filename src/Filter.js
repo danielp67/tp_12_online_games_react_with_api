@@ -3,51 +3,34 @@ import React, {Component} from 'react';
 
 
 class Filter extends Component {
-  constructor(props) {
-    super(props);
-      this.state = {
-        gamesData : this.props.gamesData
-    }
-    console.log("filter constructor",this.props)
-}
 
   filterByIndexDesc = () =>{
     const byIndex = (a,b) => b.rank - a.rank
-
-    let mapped = [...this.state.gamesData];
+    let mapped = [...this.props.gamesData];
     mapped = mapped.sort(byIndex);
-  
-    this.props.newSetState(mapped);
+    this.props.handleChange(mapped);
   }
 
 
   filterByIndexAsc = () =>{
     const byIndex = (a,b) => a.rank - b.rank
-
-    let mapped = [...this.state.gamesData];
+    let mapped = [...this.props.gamesData];
     mapped = mapped.sort(byIndex);
-
-    this.props.newSetState(mapped);
+    this.props.handleChange(mapped);
   }
-
-
   
   filterByRateAsc = () =>{
     const byRate = (a,b) => a.rate - b.rate
-    let mapped = [...this.state.gamesData];
+    let mapped = [...this.props.gamesData];
     mapped = mapped.sort(byRate);
-
-    this.props.newSetState(mapped);
-      
+    this.props.handleChange(mapped); 
   }
 
   filterByRateDesc = () =>{
     const byRate = (a,b) => b.rate - a.rate
-    let mapped = [...this.state.gamesData];
+    let mapped = [...this.props.gamesData];
     mapped = mapped.sort(byRate);
-
-    this.props.newSetState(mapped);
-      
+    this.props.handleChange(mapped);
   }
 
   filterByNameAsc = () =>{
@@ -56,11 +39,10 @@ class Filter extends Component {
       if(a.name > b.name) { return 1; }
       return 0;
   }
-  let mapped = [...this.state.gamesData];
+  let mapped = [...this.props.gamesData];
   mapped = mapped.sort(byName);
 
-  this.props.newSetState(mapped);
-      
+  this.props.handleChange(mapped);  
   }
 
   filterByNameDesc = () =>{
@@ -69,28 +51,24 @@ class Filter extends Component {
       if(a.name < b.name) { return 1; }
       return 0;
   }
-  let mapped = [...this.state.gamesData];
+  let mapped = [...this.props.gamesData];
   mapped = mapped.sort(byName);
 
-  this.props.newSetState(mapped);
-      
+  this.props.handleChange(mapped);
   }
 
   filterByDateAsc = () =>{
-    const byDate = (a,b) => a.releaseDate - b.releaseDate
-    let mapped = [...this.state.gamesData];
+    const byDate = (a,b) => a.releaseAt - b.releaseAt
+    let mapped = [...this.props.gamesData];
     mapped = mapped.sort(byDate);
-
-    this.props.newSetState(mapped);
+    this.props.handleChange(mapped);
   }
 
   filterByDateDesc = () =>{
-    const byDate = (a,b) => b.releaseDate - a.releaseDate
-    let mapped = [...this.state.gamesData];
+    const byDate = (a,b) => b.releaseAt - a.releaseAt
+    let mapped = [...this.props.gamesData];
     mapped = mapped.sort(byDate);
-
-    this.props.newSetState(mapped);
-      
+    this.props.handleChange(mapped);
   }
 
 

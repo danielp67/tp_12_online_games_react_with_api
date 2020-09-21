@@ -7,7 +7,7 @@ class Form extends Component {
       author: '',
       comment: '',
       rate: '',
-      date :'',
+      createAt :'',
     }
 
   state = this.initialState
@@ -15,14 +15,11 @@ class Form extends Component {
   
   handleChange = (event) => {
     const {name, value} = event.target
-    this.setState({
-      [name]: value,
-    })
-    let d = new Date();
-    let n = d.toLocaleString();    
-    this.setState({
-      date: n
-    })
+    this.setState({ [name]: value })
+    let date = new Date();
+    date.setHours( date.getHours() + 2 )
+    let n = date.toISOString().slice(0, 19).replace('T', ' ');
+    this.setState({createAt: n})
   }
 
   submitForm = () => {

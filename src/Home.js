@@ -1,55 +1,62 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import Filter from './Filter';
 import GamesCard from './GamesCard';
 import storage from './Store';
 import Autocomplete from './Autocomplete';
 import axios from 'axios';
-
+import {StoreContext} from './StoreContext';
 
 
 class Home extends Component {
- constructor(props){
+ 
+  constructor(props){
   super(props);
   this.state = {
     GamesList : [],
+    GamesListFilter : [],
     gameId : storage.getState().gameId,
-    permittedValues : storage.getState().permittedValues
+    permittedValues : storage.getState().permittedValues,
+    loading : false,
+    error: null
   }
   console.log(this.state)
+  console.log('StoreContext', StoreContext)
  }
+
+ static contextType = StoreContext;
 
  componentDidMount() {
  this.getGames();
- console.log(this.state)
 }
 
- getGames(){
-  axios.get(`https://127.0.0.1:8000/rep`).then(res => {
-    console.log(res)
-    this.setState({GamesList : res.data})
-    storage.setGameList(res.data)
-    console.log(storage.getState())
-    console.log("getGames",this.state)
+ getGames =() => {
+  axios.get(`https://127.0.0.1:8000/home`).then(res => {
+    this.setState({GamesList : res.data, GamesListFilter : res.data})  
 })
+console.log("getGames",this.state)
 }
 
-  newSetState = (mapped) =>{
-    this.setState({GamesList : mapped})
-    console.log(mapped)
+handleChange = (mapped) =>{
+    this.setState({GamesListFilter : mapped})
   }
 
-  searchName = () => {
-    this.setState({GamesList :storage.filterName()})
+searchName = (filterName) => {
+    this.setState({GamesListFilter :filterName})
   }
 
   render() {
-    return (
+    if(this.state.GamesList != null){
+
+      return (
       <div className="container">   
-        <Filter gamesData={this.state.GamesList} newSetState={this.newSetState}/>
-          <Autocomplete suggestions={this.state.permittedValues}  searchName ={this.searchName} />
-        <GamesCard gamesData={this.state.GamesList} />
+        <Filter gamesData={this.state.GamesListFilter} handleChange={this.handleChange} />
+        <Autocomplete gamesData={this.state.GamesList}  searchName ={this.searchName} />
+        <GamesCard gamesData={this.state.GamesListFilter} />
       </div>
     )
+  }else{
+    return <h5 className="card-title">wait... </h5>
+    }
   }
 }
 

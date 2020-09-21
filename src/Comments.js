@@ -10,7 +10,7 @@ const CommentsHeader = () => {
 
 
   const CommentsList = (props) => {
-    const rows = props.characterData.map((row, index) => {
+    const rows = props.commentsData.map((row, index) => {
       return (
         <div key={index}  className="card my-2 mx-2">
               
@@ -18,7 +18,7 @@ const CommentsHeader = () => {
                   <div className="row">
                       <div className="col-9">
                       De : {row.author} <br/>
-                      le : {row.date}
+                      le : {row.createAt}
                       </div>
 
                       <div className="col-3 text-right">
@@ -31,7 +31,7 @@ const CommentsHeader = () => {
                 {row.comment}<br/>
             </p>
           </div>
-          <button className="card-footer" onClick={() => props.removeCharacter(index)}>Delete</button>
+          <button className="card-footer" onClick={() => props.removeComment(index)}>Delete</button>
         </div>
       )
     })
@@ -42,12 +42,12 @@ const CommentsHeader = () => {
 
 
   const Comments = (props) => {
-    const {characterData, removeCharacter} = props
+    const {commentsData, removeComment} = props
   
     return (
       <div >
         <CommentsHeader />
-        <CommentsList characterData={characterData} removeCharacter={removeCharacter} />
+        <CommentsList commentsData={commentsData} removeComment={removeComment} />
       </div>
     )
   }

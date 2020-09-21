@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import storage from './Store';
 
 
 class Autocomplete extends Component {
@@ -9,7 +8,6 @@ class Autocomplete extends Component {
   };
 
   static defaultProps = {
-    
     suggestions: []
   };
 
@@ -31,7 +29,11 @@ class Autocomplete extends Component {
 
   // Event fired when the input value is changed
   onChange = e => {
-    const { suggestions } = this.props;
+    let permittedValues = [];
+    for (let i = 0; i < this.props.gamesData.length; i++){
+      permittedValues[i] = this.props.gamesData[i]["name"];
+    }
+    const suggestions = permittedValues;
     const userInput = e.currentTarget.value;
 
     // Filter our suggestions that don't contain the user's input
@@ -108,9 +110,21 @@ class Autocomplete extends Component {
   };
 
   filterName = () =>{
-    console.log(this.state.userInput)
-    storage.setName(this.state.userInput)
-    this.props.searchName()
+    let filterName=[]
+
+     console.log(this.props.gamesData.length)
+     if(this.state.userInput){
+       for (let i = 0; i < this.props.gamesData.length; i++){
+         if(this.props.gamesData[i]["name"] === this.state.userInput){
+           filterName.push(this.props.gamesData[i])
+         }
+       }
+     console.log(filterName)
+   }else{
+     filterName = this.props.gamesData
+   }
+
+    this.props.searchName(filterName)
     }
 
   render() {
