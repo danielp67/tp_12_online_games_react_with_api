@@ -1,11 +1,10 @@
 import React from 'react';
 import {ThemeContext} from './ThemeContext';
-import {  Link } from "react-router-dom";
 
 const CommentsHeader = () => {
     return (
      <h3  className="text-center my-3">
-       Vos Commentaires
+       Votre Commentaire
      </h3> 
     )
   }
@@ -15,8 +14,8 @@ const CommentsHeader = () => {
     const rows = props.commentsData.map((row, index) => {
       return (
         <ThemeContext.Consumer>
-      {({theme}) => (
-        <div key={index} style={{backgroundColor: theme.divBackground}}  className="card my-2 mx-2">
+        {({theme}) => (
+          <div key={index} style={{backgroundColor: theme.divBackground}}  className="card my-2 mx-2">
               
                <div className="card-header">
                   <div className="row">
@@ -24,6 +23,7 @@ const CommentsHeader = () => {
                       De : {row.author} <br/>
                       le : {row.createAt}
                       </div>
+
                       <div className="col-3 text-right">
                       Note : {row.rate}/5
                       </div>
@@ -36,8 +36,7 @@ const CommentsHeader = () => {
           </div>
           <div className="card-footer">
             <div className="row">
-             <Link className="btn btn-primary col-4 offset-1" to={`/comment/${row.id}`}>Modifier</Link>
-            <button className="btn btn-danger col-4 offset-2" onClick={() => 
+            <button className="btn btn-danger col-4 offset-4" onClick={() => 
             props.removeComment(row.id)}>Delete</button>
            
             </div>
@@ -52,17 +51,17 @@ const CommentsHeader = () => {
   }
 
 
-  const Comments = (props) => {
-    const {commentsData, removeComment, editComment} = props
+  const CommentUpdate = (props) => {
+    const {commentsData, removeComment} = props
   
     return (
       <div >
         <CommentsHeader />
-        <CommentsList commentsData={commentsData} removeComment={removeComment} editComment={editComment} />
+        <CommentsList commentsData={commentsData} removeComment={removeComment}  />
       </div>
     )
   }
 
 
 
-export default Comments
+export default CommentUpdate

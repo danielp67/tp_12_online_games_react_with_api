@@ -1,10 +1,11 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import Filter from './Filter';
 import GamesCard from './GamesCard';
 import storage from './Store';
 import Autocomplete from './Autocomplete';
 import axios from 'axios';
 import {StoreContext} from './StoreContext';
+import {ThemeContext} from './ThemeContext';
 
 
 class Home extends Component {
@@ -19,7 +20,6 @@ class Home extends Component {
     loading : false,
     error: null
   }
-  console.log(this.state)
   console.log('StoreContext', StoreContext)
  }
 
@@ -33,7 +33,6 @@ class Home extends Component {
   axios.get(`https://127.0.0.1:8000/home`).then(res => {
     this.setState({GamesList : res.data, GamesListFilter : res.data})  
 })
-console.log("getGames",this.state)
 }
 
 handleChange = (mapped) =>{
@@ -48,14 +47,30 @@ searchName = (filterName) => {
     if(this.state.GamesList != null){
 
       return (
-      <div className="container">   
+        <ThemeContext.Consumer>
+        {({theme}) => (
+          <div className="container-fluid" style={{backgroundColor: theme.background, color:theme.color}}>
+          <div className="row">
+          <div className="col-10 offset-2">
         <Filter gamesData={this.state.GamesListFilter} handleChange={this.handleChange} />
         <Autocomplete gamesData={this.state.GamesList}  searchName ={this.searchName} />
         <GamesCard gamesData={this.state.GamesListFilter} />
       </div>
+      </div>
+      </div>
+      )}
+      </ThemeContext.Consumer>
     )
   }else{
-    return <h5 className="card-title">wait... </h5>
+    return (
+      <ThemeContext.Consumer>
+      {({theme}) => (
+        <div className="" style={{backgroundColor: theme.background, color:theme.color}}>
+        <h5 className="card-title">wait... </h5>
+        </div>
+      )}
+      </ThemeContext.Consumer>
+    )
     }
   }
 }

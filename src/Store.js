@@ -43,7 +43,6 @@ class Store{
       let filterName=[]
      //pas nécessaire
      // this.state.GamesList = GamesList;
-      console.log(this.state.searchGame)
       if(this.state.searchGame){
         for (let i = 0; i < this.state.GamesList.length; i++){
           if(this.state.GamesList[i]["name"] == this.state.searchGame){
@@ -52,7 +51,6 @@ class Store{
           }
          
         }
-      console.log(filterName)
       this.state.GamesList = filterName
     }
         return this.state.GamesList
@@ -61,15 +59,10 @@ class Store{
 
 
 componentDidMount(){
-
-  console.log(this.state)
-
-
     const state = localStorage.getItem('stateComment')
     if (state) {
       this.state.characters = JSON.parse(state)
     }
-    console.log(this.state)
   }
 
 

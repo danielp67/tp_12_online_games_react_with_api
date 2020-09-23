@@ -1,4 +1,6 @@
 import React from 'react';
+import {ThemeContext} from './ThemeContext';
+import {  Link } from "react-router-dom";
 
 
 const TableBody = (props) => {
@@ -15,10 +17,12 @@ const TableBody = (props) => {
       }
 
     return (
-      <div key={index}  className="card my-2 mx-2 pt-2 col-4">
-      <a href={`game/${row.rank}`}>
+      <ThemeContext.Consumer>
+      {({theme}) => (
+      <div key={index} style={{backgroundColor: theme.divBackground}} className="card my-2 mx-2 pt-2 col-4">
+      <Link to={`/game/${row.rank}`}>
         <img src={row.img} className="card-img-top" alt="..." />
-        <div className="card-body">
+        <div style={{color:theme.divColor}} className="card-body">
           <h5 className="card-title">{row.name}</h5>
           <p className="card-text">
           Studio : {row.studio.name}<br/>
@@ -27,9 +31,11 @@ const TableBody = (props) => {
           Note : {row.rate}/5
           </p>
           <span className="btn btn-success">Voir plus...</span>     
-        </div>
-        </a>
+        </div>    
+        </Link>
       </div>
+      )}
+      </ThemeContext.Consumer>
     )
   })
   return <div className="row">{rows}</div>
@@ -40,7 +46,13 @@ const GamesCard = (props) => {
   const {gamesData} = props
 
   return (
+    <ThemeContext.Consumer>
+    {({theme, toggleTheme}) => (
+      <div style={{backgroundColor: theme.background, color:theme.color}}>
       <TableBody gamesData={gamesData} />
+      </div>
+      )}
+      </ThemeContext.Consumer>
   )
 }
 

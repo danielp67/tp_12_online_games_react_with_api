@@ -3,6 +3,7 @@ import Form from './Form';
 import SelectedGame from './SelectedGame';
 import Comments from './Comments';
 import axios from 'axios';
+import {ThemeContext} from './ThemeContext';
 
 
 
@@ -27,8 +28,6 @@ class Game extends Component{
       const params = this.state.gameId
      axios.get('https://127.0.0.1:8000/game/'+params).then(res => {
       this.setState({Game : res.data.game[0], commentByGame : res.data.comments})
-      console.log(res.data.comments)
-      console.log(this.state.Game)
     }  
     )}
 
@@ -36,46 +35,48 @@ class Game extends Component{
        comment = JSON.stringify(comment)
        console.log(comment)
        const params = this.state.gameId
-       axios.post('https://127.0.0.1:8000/game/'+params, comment, {headers:{"Content-Type" : "application/json"}})
+       axios.post('https://127.0.0.1:8000/comment/add/'+params, comment, {headers:{"Content-Type" : "application/json"}})
       .then(res => {
-        console.log(res);
        if(res.status === 200){
          this.getGame();
         }else {
            console.log("error comment");
        }
       })
-
   }
 
-/*
-  saveStateToLocalStorage = () => {
-    localStorage.setItem('stateComment', JSON.stringify(this.state.characters))
-  }
+  removeComment = (commentId) => {
+    axios.delete('https://127.0.0.1:8000/comment/delete/'+commentId).then(res => {
+    if(res.status === 200){
+      this.getGame();
+     }else {
+        console.log("error comment");
+    }
+  })
+}
 
- 
-  commentFilter = () => {
-        for (let i = 0; i < this.state.characters.length; i++) {                 
-          if (this.state.characters[i].gameId ==  this.state.gameId) {
-            this.state.commentByGame.push(this.state.characters[i]);
-              }
-        }
-  } 
- */
+    editComment = (comment) => {
+      console.log(comment)
+
+    }
 
   render() {
     if(this.state.Game.category != null){
    
     return (
-      <div className="container">
+      <ThemeContext.Consumer>
+      {({theme}) => (
+      <div className="container-fluid" style={{backgroundColor: theme.background, color:theme.color}}>
       <div className="row">
      <div className="col-6 offset-3">
      <SelectedGame gamesData={this.state.Game} />
-     <Comments commentsData={this.state.commentByGame} removeComment={this.removeComment} />
+     <Comments commentsData={this.state.commentByGame} removeComment={this.removeComment} editComment={this.editComment}/>
       <Form gameId={this.state.gameId} handleSubmit={this.handleSubmit} />
       </div>
       </div>
       </div>
+      )}
+      </ThemeContext.Consumer>
     )
 
     }else{

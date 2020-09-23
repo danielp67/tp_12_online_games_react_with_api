@@ -1,4 +1,5 @@
 import React from 'react';
+import {ThemeContext} from './ThemeContext';
 
 
 const SelectedGame = (props)=>{
@@ -15,7 +16,9 @@ const SelectedGame = (props)=>{
     }
 
      return (
-      <div   className="card my-2 mx-2 pt-2">
+      <ThemeContext.Consumer>
+      {({theme}) => (
+      <div style={{backgroundColor: theme.divBackground, color : theme.divColor}}   className="card my-2 mx-2 mt-5">
       <img src={`../${selectedGame.img}`} className="card-img-top" alt="..." />
       <div className="card-body">
       <h5 className="card-title">{selectedGame.name}</h5>
@@ -29,6 +32,8 @@ const SelectedGame = (props)=>{
       </p>
     </div>
     </div>
+    )}
+      </ThemeContext.Consumer>
      ) 
 
   }
