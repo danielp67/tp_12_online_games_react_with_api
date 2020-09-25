@@ -47,8 +47,8 @@ class Autocomplete extends Component {
 
      const indexImg = [] 
     for(let i = 0; i<filteredSuggestions.length ; i++){
-      const str1 ="img/";
-      const str2 = ".jpg";
+      const str1 ="";
+      const str2 = "";
          indexImg.push(str1.concat(suggestions.indexOf(filteredSuggestions[i])+1,str2))
        }
  
@@ -162,7 +162,7 @@ class Autocomplete extends Component {
                   key={suggestion}
                   onClick={onClick}
                 >
-                <img src={indexImg[index]} className="mr-2" alt="" width="30" height="30"></img>{suggestion}
+                <img src={`https://127.0.0.1:8000/game/img/${indexImg[index]}`} className="mr-2" alt="" width="30" height="30"></img>{suggestion}
                 </li>
               );
             })}

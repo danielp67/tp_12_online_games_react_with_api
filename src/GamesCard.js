@@ -17,11 +17,11 @@ const TableBody = (props) => {
       }
 
     return (
-      <ThemeContext.Consumer>
+      <ThemeContext.Consumer key={index}>
       {({theme}) => (
-      <div key={index} style={{backgroundColor: theme.divBackground}} className="card my-2 mx-2 pt-2 col-4">
+      <div  style={{backgroundColor: theme.divBackground}} className="card my-2 mx-2 pt-2 col-4">
       <Link to={`/game/${row.rank}`}>
-        <img src={row.img} className="card-img-top" alt="..." />
+        <img src={`https://127.0.0.1:8000/game/img/${row.rank}`}className="card-img-top" alt="..." />
         <div style={{color:theme.divColor}} className="card-body">
           <h5 className="card-title">{row.name}</h5>
           <p className="card-text">
@@ -47,7 +47,7 @@ const GamesCard = (props) => {
 
   return (
     <ThemeContext.Consumer>
-    {({theme, toggleTheme}) => (
+    {({theme}) => (
       <div style={{backgroundColor: theme.background, color:theme.color}}>
       <TableBody gamesData={gamesData} />
       </div>

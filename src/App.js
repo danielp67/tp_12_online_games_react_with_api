@@ -7,10 +7,9 @@ import {
   Redirect
 } from "react-router-dom";
 import Home from './Home';
-import About from './About';
+import NewGame from './NewGame';
 import Nav from './Nav';
 import Game from './Game';
-import SelectedComment from './SelectedComment';
 import {StoreContext, store} from './StoreContext';
 import {ThemeContext, Theme} from './ThemeContext';
 
@@ -48,9 +47,8 @@ import {ThemeContext, Theme} from './ThemeContext';
                 <Redirect to="/home" />
                 </Route>
                 <Route path="/home" exact component={Home}/>
-                <Route path="/about" component={About} />
+                <Route path="/newgame" component={NewGame} />
                 <Route path="/game/:gameId"  component={Game} />
-                <Route path="/comment/:commentId"  component={SelectedComment} />
                 </StoreContext.Provider>
               </Switch>
               </ThemeContext.Provider>

@@ -28,6 +28,7 @@ class Game extends Component{
       const params = this.state.gameId
      axios.get('https://127.0.0.1:8000/game/'+params).then(res => {
       this.setState({Game : res.data.game[0], commentByGame : res.data.comments})
+      console.log(this.state)
     }  
     )}
 
@@ -45,6 +46,22 @@ class Game extends Component{
       })
   }
 
+  handleSubmitUpdate = (comment) => {
+    const params = comment.id
+    comment = JSON.stringify(comment)
+    console.log(comment)
+    axios.put('https://127.0.0.1:8000/comment/update/'+params, comment, {headers:{"Content-Type" : "application/json"}})
+   .then(res => {
+    if(res.status === 200){
+     this.getGame();
+     console.log('refresh')
+   }else {
+        console.log("error comment");
+    }
+   })
+
+}
+
   removeComment = (commentId) => {
     axios.delete('https://127.0.0.1:8000/comment/delete/'+commentId).then(res => {
     if(res.status === 200){
@@ -55,10 +72,6 @@ class Game extends Component{
   })
 }
 
-    editComment = (comment) => {
-      console.log(comment)
-
-    }
 
   render() {
     if(this.state.Game.category != null){
@@ -70,7 +83,7 @@ class Game extends Component{
       <div className="row">
      <div className="col-6 offset-3">
      <SelectedGame gamesData={this.state.Game} />
-     <Comments commentsData={this.state.commentByGame} removeComment={this.removeComment} editComment={this.editComment}/>
+     <Comments commentsData={this.state.commentByGame} removeComment={this.removeComment} handleSubmitUpdate={this.handleSubmitUpdate}/>
       <Form gameId={this.state.gameId} handleSubmit={this.handleSubmit} />
       </div>
       </div>

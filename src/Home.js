@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Filter from './Filter';
 import GamesCard from './GamesCard';
-import storage from './Store';
 import Autocomplete from './Autocomplete';
 import axios from 'axios';
 import {StoreContext} from './StoreContext';
@@ -15,10 +14,7 @@ class Home extends Component {
   this.state = {
     GamesList : [],
     GamesListFilter : [],
-    gameId : storage.getState().gameId,
-    permittedValues : storage.getState().permittedValues,
-    loading : false,
-    error: null
+
   }
   console.log('StoreContext', StoreContext)
  }
