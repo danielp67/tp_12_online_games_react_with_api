@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Link } from "react-router-dom";
+import {  Link, NavLink } from "react-router-dom";
 import ThemeTogglerButton from './ThemeToggler';
 
 
@@ -24,13 +24,23 @@ function Nav(){
         <Link className="nav-link" to="/games">Games</Link>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown link
-          </a>
+          <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Catégorie
+          </Link>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a className="dropdown-item" href="/">Action</a>
-            <a className="dropdown-item" href="/">Another action</a>
-            <a className="dropdown-item" href="/">Something else here</a>
+         
+            <NavLink  className="dropdown-item" to="/category/1">Aventure</NavLink>
+            <Link className="dropdown-item" to="/category/2">Action</Link>
+            <Link className="dropdown-item" to="/category/3">Bac à sable</Link>
+            <Link className="dropdown-item" to="/category/4">Battle royale</Link>
+            <Link className="dropdown-item" to="/category/5">Construction</Link>
+            <Link className="dropdown-item" to="/category/6">Course</Link>
+            <Link className="dropdown-item" to="/category/7">Hack'n'slash</Link>
+            <Link className="dropdown-item" to="/category/8">Jeu de rôle</Link>
+            <Link className="dropdown-item" to="/category/9">Plates-formes</Link>
+            <Link className="dropdown-item" to="/category/10">RPG</Link>
+            <Link className="dropdown-item" to="/category/11">Sport</Link>
+
           </div>
         </li>
       </ul>

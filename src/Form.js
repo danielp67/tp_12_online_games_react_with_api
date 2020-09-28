@@ -31,7 +31,7 @@ class Form extends Component {
   
 
   render() {
-    const { author, comment,rate } = this.state;
+    const { author, comment } = this.state;
     
     return (
       <ThemeContext.Consumer  >

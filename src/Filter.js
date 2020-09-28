@@ -96,7 +96,7 @@ class Filter extends Component {
           <button  type="button" className="btn btn-danger mx-2 my-2" onClick={this.filterByRateDesc} >↑</button>
           </div> 
           <div className="form-group col-2">
-          <button  className="btn btn-info mx-2 my-2" type="button" onClick={this.filterByIndexAsc} >Trier par Défaut</button>
+          <button  className="btn btn-secondary mx-2 my-2" type="button" onClick={this.filterByIndexAsc} >Trier par Défaut</button>
           </div>  
           </div>
         </form>

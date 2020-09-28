@@ -13,7 +13,7 @@ export const Theme = {
     background :'#FFF',
     color : '#000',
     divBackground : '#FFF',
-    divColor : '#0400ff'
+    divColor : '#616161'
   }
 }
 

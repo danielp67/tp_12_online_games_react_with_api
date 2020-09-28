@@ -30,7 +30,7 @@ const CommentsHeader = () => {
     }
 
     render(){
-    const {commentsData, removeComment, editComment, handleSubmitUpdate} = this.props
+    const {removeComment, handleSubmitUpdate} = this.props
     const rows = this.props.commentsData.map((row, index) => {
       const comment = this.props.commentsData[index];
       return (
@@ -149,7 +149,7 @@ render(){
     }
 
     render(){
-    const {id, author, comment, rate} = this.state;
+    const {id, author, comment} = this.state;
    
       return (  
         <ThemeContext.Consumer >

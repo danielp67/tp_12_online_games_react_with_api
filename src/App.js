@@ -12,6 +12,7 @@ import Nav from './Nav';
 import Game from './Game';
 import {StoreContext, store} from './StoreContext';
 import {ThemeContext, Theme} from './ThemeContext';
+import Category from './Category';
 
 
   class App extends React.Component {
@@ -49,6 +50,7 @@ import {ThemeContext, Theme} from './ThemeContext';
                 <Route path="/home" exact component={Home}/>
                 <Route path="/newgame" component={NewGame} />
                 <Route path="/game/:gameId"  component={Game} />
+                <Route path="/category/:categoryId" exact component={Category} />
                 </StoreContext.Provider>
               </Switch>
               </ThemeContext.Provider>
