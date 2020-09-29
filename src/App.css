@@ -161,7 +161,6 @@ input {
 }
 .half-stars-example .rating__input--none:hover + .rating__label .rating__icon--none {
   color: red;
-
 }
 
 

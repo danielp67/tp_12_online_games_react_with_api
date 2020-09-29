@@ -1,19 +1,22 @@
 import React from 'react';
 import {  Link, NavLink } from "react-router-dom";
 import ThemeTogglerButton from './ThemeToggler';
+import {ThemeContext} from './ThemeContext';
 
 
 
 function Nav(){
 
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-light">
+    <ThemeContext.Consumer>
+    {({theme}) => (
+    <nav className="navbar navbar-expand-md navbar-light" style={{backgroundColor: theme.navBackground, color:theme.color}}>
     <Link className="navbar-brand" to="/">Online Games</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul className="navbar-nav">
+      <ul className="navbar-nav" >
         <li className="nav-item active">
           <Link className="nav-link" to="/home">Home</Link>
         </li>
@@ -49,6 +52,8 @@ function Nav(){
       </div>
     </div>
   </nav>
+  )}
+      </ThemeContext.Consumer>
 
 )
 

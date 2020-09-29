@@ -36,6 +36,7 @@ class Autocomplete extends Component {
     const suggestions = permittedValues;
     const userInput = e.currentTarget.value;
 
+
     // Filter our suggestions that don't contain the user's input
     const filteredSuggestions = suggestions.filter(
       suggestion =>
@@ -43,13 +44,14 @@ class Autocomplete extends Component {
 
     );
 
-     console.log(suggestions)
-
      const indexImg = [] 
     for(let i = 0; i<filteredSuggestions.length ; i++){
-      const str1 ="";
+    /*  const str1 ="";
       const str2 = "";
          indexImg.push(str1.concat(suggestions.indexOf(filteredSuggestions[i])+1,str2))
+    */
+      let id = suggestions.indexOf(filteredSuggestions[i]);
+        indexImg.push(this.props.gamesData[id].id)
        }
  
     console.log(indexImg)

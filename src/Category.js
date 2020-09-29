@@ -11,15 +11,21 @@ class Category extends Component {
   constructor(props){
   super(props);
   this.state = {
-    categoryId : this.props.match.params.categoryId,
+    categoryId : '',
     categoryName : '',
     GamesList : [],
     GamesListFilter : [],
     loading : false
   }
-
  }
 
+ componentDidUpdate() {
+
+if( this.props.match.params.categoryId !== this.state.categoryId){
+  this.setState({categoryId : this.props.match.params.categoryId, loading :false})
+ this.getGames();
+}
+}
 
 
  componentDidMount() {
@@ -27,12 +33,11 @@ class Category extends Component {
 }
 
  getGames =() => {
-   const params = this.state.categoryId;
+   const params = this.props.match.params.categoryId;
   axios.get(`https://127.0.0.1:8000/category/`+params).then(res => {
 
   if(res.status === 200){
-
-    this.setState({GamesList : res.data, GamesListFilter : res.data})  
+    this.setState({GamesList : res.data, GamesListFilter : res.data, categoryId : params})  
 
     for(let i=0; i<this.state.GamesList[0].category.length;i++){
 
@@ -41,7 +46,6 @@ class Category extends Component {
       }
 
     }
-
   }  
   
 })
